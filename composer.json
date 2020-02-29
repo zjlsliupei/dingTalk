@@ -1,0 +1,23 @@
+{
+    "name": "liupei/dingtalk",
+    "description": "dingtalk sdk for php",
+    "keywords": ["dingtalk"],
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "liupei",
+            "email": "496005909@qq.com"
+        }
+    ],
+    "require": {
+        "php": "^7.1",
+        "curl/curl": "^2.2",
+        "topthink/think-cache": "^2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "liupei\\dingtalk\\" : "src"
+        }
+    }
+}

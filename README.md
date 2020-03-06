@@ -76,3 +76,23 @@ var_dump($response->isSuccess());
 var_dump($response->getData());
 var_dump($response->getErrMsg());
 ```
+
+### 钉钉机器人调用
+```php
+include 'vendor/autoload.php';
+
+// 默认方式实例化
+$robot = new liupei\dingtalk\Robot('access_token');
+// 使用签名方式实例化
+$robot = new liupei\dingtalk\Robot('access_token','secret');
+
+// 向机器人群发送消息，消息格式参考链接：https://ding-doc.dingtalk.com/doc#/serverapi3/iydd5h
+$aa = $robot->send([
+    "msgtype" => "text",
+    "text" => [
+        "content" => "测试内容"
+    ]
+]);
+var_dump($response->isSuccess());
+var_dump($response->getErrMsg());
+```

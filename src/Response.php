@@ -29,7 +29,6 @@ class Response
      */
     public function setHttpErrMsg($httpErrMsg)
     {
-        var_dump($httpErrMsg);
         $this->httpErrMsg = $httpErrMsg;
     }
 

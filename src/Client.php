@@ -4,7 +4,6 @@
 namespace liupei\dingtalk;
 
 use Curl\Curl;
-use think\facade\Cache;
 
 abstract class Client
 {
@@ -82,13 +81,7 @@ abstract class Client
         self::$config = $config;
         if (isset($config['cache'])) {
             // 设置缓存
-            $_cacheConfig = [
-                'default' => $config['type'],
-                'stores' => [
-                    $config['type'] => $config['cache']
-                ]
-            ];
-            Cache::config($_cacheConfig);
+            Cache::init($config['cache']);
         }
     }
 

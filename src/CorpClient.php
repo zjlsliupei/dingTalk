@@ -3,7 +3,6 @@
 
 namespace liupei\dingtalk;
 
-use think\facade\Cache;
 
 /**
  * 封闭企业内部应用接口

@@ -12,8 +12,7 @@
     ],
     "require": {
         "php": "^7.1",
-        "curl/curl": "^2.2",
-        "topthink/think-cache": "^2.0"
+        "curl/curl": "^2.2"
     },
     "autoload": {
         "psr-4": {

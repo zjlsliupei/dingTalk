@@ -3,8 +3,6 @@
 
 namespace liupei\dingtalk;
 
-use think\facade\Cache;
-
 /**
  * 封装第三方企业应用接口
  * Class IsvClient

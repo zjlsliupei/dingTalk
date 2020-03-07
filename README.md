@@ -26,14 +26,11 @@ liupei\dingtalk\Client::config([
     'type' => 'corp', // corp:企业内部开发
     'app_key' => 'xxxxxxxxxxxxx', // 钉钉微应用对应的app_key
     'app_secret' => 'xxxxxxxxxxxxxxxxxx', // 钉钉微应用对应的app_secret
-    'cache' => [       // 支持file,redis等方案，该缓存方案使用think-cache方案，其它配置参数链接 https://www.kancloud.cn/manual/thinkphp5_1/354116
-        'type'   => 'redis',
+    'cache' => [       // 支持redis等方案
         'host'   => '127.0.0.1',
         'port'   => 6379,
-        'prefix' => '',
         'select' => 0,
         'password' => '',
-        'expire' => 0,
     ]
 ]);
 

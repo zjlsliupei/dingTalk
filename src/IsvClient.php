@@ -36,4 +36,19 @@ class IsvClient extends Client
 
         return $this;
     }
+
+    public function getSign()
+    {
+        
+    }
+
+    public function getTicket()
+    {
+        
+    }
+
+    public function getFile()
+    {
+        // TODO: Implement getFile() method.
+    }
 }

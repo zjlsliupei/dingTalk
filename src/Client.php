@@ -105,6 +105,24 @@ abstract class Client
     public abstract function withAccessToken($accessToken = true);
 
     /**
+     * 获取签名类
+     * @return mixed
+     */
+    public abstract function getSign();
+
+    /**
+     * 获取ticket
+     * @return mixed
+     */
+    public abstract function getTicket();
+
+    /**
+     * 获取文件类
+     * @return mixed
+     */
+    public abstract function getFile();
+
+    /**
      * 设置查询字符串，合并的方式
      * @param array $queryParam
      * @return $this

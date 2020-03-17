@@ -4,6 +4,9 @@
 namespace liupei\dingtalk;
 
 
+use liupei\dingtalk\extend\File;
+use liupei\dingtalk\extend\Sign;
+
 /**
  * 封闭企业内部应用接口
  * Class CorpClient
@@ -37,7 +40,7 @@ class CorpClient extends Client
     private function getAccessToken()
     {
         $accessToken = Cache::get('access_token');
-        if (!empty($_accessToken)) {
+        if (!empty($accessToken)) {
             return $accessToken;
         }
         $client = Client::newClient();
@@ -52,5 +55,49 @@ class CorpClient extends Client
             );
         }
         return $response->getData('access_token');
+    }
+
+    /**
+     * 获取js_ticket
+     * @return array|mixed|null
+     * @throws \ErrorException
+     */
+    public function getTicket()
+    {
+        $ticket = Cache::get('ticket');
+        if (!empty($ticket)) {
+            return $ticket;
+        }
+        $client = Client::newClient();
+        $response = $client->path('/get_jsapi_ticket')->withAccessToken(true)->request();
+        if ($response->isSuccess()) {
+            Cache::set('ticket',
+                $response->getData('ticket'),
+                $response->getData('expires_in') - 100
+            );
+        }
+        return $response->getData('ticket');
+    }
+
+    /**
+     * 获取签名类
+     * @return Sign|mixed
+     * @throws \ErrorException
+     */
+    public function getSign()
+    {
+        $corpId = self::$config['corp_id'];
+        return new Sign($corpId, $this->getAccessToken(), $this->getTicket(), self::$config['agent_id']);
+    }
+
+    /**
+     * 获取文件类
+     * @return File|mixed
+     * @throws \ErrorException
+     */
+    public function getFile()
+    {
+        $corpId = self::$config['corp_id'];
+        return new File($corpId, $this->getAccessToken(), self::$config['agent_id']);
     }
 }

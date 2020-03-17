@@ -18,6 +18,8 @@ liupei\dingtalk\Client::config([
     'type' => 'corp', // corp:企业内部开发
     'app_key' => 'xxxxxxx', // 钉钉微应用对应的app_key
     'app_secret' => 'xxxxxxxxxxxx', // 钉钉微应用对应的app_secret
+    'corp_id' => 'XXXXXXXXXX', // 企业id
+    'agent_id' => 'XXXXXXXXXXXXX', // agent_id
 ]);
 
 // 标准配置（带缓存配置）
@@ -26,6 +28,8 @@ liupei\dingtalk\Client::config([
     'type' => 'corp', // corp:企业内部开发
     'app_key' => 'xxxxxxxxxxxxx', // 钉钉微应用对应的app_key
     'app_secret' => 'xxxxxxxxxxxxxxxxxx', // 钉钉微应用对应的app_secret
+    'corp_id' => 'XXXXXXXXXXXXXXX', // 企业id
+    'agent_id' => 'XXXXXXXXXXX', // agent_id
     'cache' => [       // 支持redis等方案
         'host'   => '127.0.0.1',
         'port'   => 6379,
@@ -92,4 +96,25 @@ $response = $robot->send([
 ]);
 var_dump($response->isSuccess());
 var_dump($response->getErrMsg());
+```
+
+### JSAPI鉴权，生成前端需要的数据
+```php
+$client = liupei\dingtalk\Client::newClient();
+$config = $client->getSign()->getCorpSign('http://www.baidu.com');
+var_dump($config);
+```
+
+### 获取自定义空间
+```php
+$client = liupei\dingtalk\Client::newClient();
+$spaceId = $client->getFile()->getCustomSpace('wensi');
+var_dump($spaceId);
+```
+
+### 授权自定义空间
+```php
+$client = liupei\dingtalk\Client::newClient();
+$success = $client->getFile()->grantCustomSpace('userid','/', 'add', null, 'wensi');
+var_dump($success);
 ```

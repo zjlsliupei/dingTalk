@@ -31,7 +31,7 @@ class Cache
 
     public static function set($key, $value, $expireSecond = 0)
     {
-        if (empty($expireSecond ==0)) {
+        if (empty($expireSecond)) {
             return self::$handle->set($key, $value);
         } else {
             return self::$handle->setex($key,$expireSecond, $value);

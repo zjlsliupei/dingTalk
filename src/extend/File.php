@@ -46,7 +46,7 @@ class File
             ])
             ->request();
         if ($response->isSuccess()) {
-            return $response->getData('spaceid');
+            return strval($response->getData('spaceid'));
         }
         return false;
     }

@@ -35,6 +35,7 @@ liupei\dingtalk\Client::config([
         'port'   => 6379,
         'select' => 0,
         'password' => '',
+        'prefix' => 'dingtalk_'
     ]
 ]);
 

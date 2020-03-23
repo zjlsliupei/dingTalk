@@ -15,6 +15,7 @@ class Cache
         'select' => 0,
         'password' => '',
         'expire' => 0,
+        'prefix' => ''
     ];
     private static $handle = null;
 
@@ -31,15 +32,30 @@ class Cache
 
     public static function set($key, $value, $expireSecond = 0)
     {
+        $_key = self::getKeyName($key);
         if (empty($expireSecond)) {
-            return self::$handle->set($key, $value);
+            return self::$handle->set($_key, $value);
         } else {
-            return self::$handle->setex($key,$expireSecond, $value);
+            return self::$handle->setex($_key,$expireSecond, $value);
         }
     }
 
     public static function get($key)
     {
-        return self::$handle->get($key);
+        $_key = self::getKeyName($key);
+        return self::$handle->get($_key);
+    }
+
+    /**
+     * 获取key名称
+     * @param string $key
+     * @return string
+     */
+    private static function getKeyName($key)
+    {
+        if (isset(self::$config['prefix'])) {
+            return self::$config['prefix'] . $key;
+        }
+        return $key;
     }
 }

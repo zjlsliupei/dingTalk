@@ -189,7 +189,7 @@ abstract class Client
                 'postParam' => $this->postParam,
                 'method' => $this->method
             ]);
-            $curl->post($url, $this->postParam);
+            $curl->post($url, json_encode($this->postParam));
         } else if ($this->method == 'get') {
             // 触发执行前事件
             $this->trigger('before_request', [
